@@ -48,6 +48,9 @@ const Header = () => {
           </div>
         </div>
         <ul className="hidden items-center gap-4 md:flex">
+           <li>
+            <Link href="/">Home</Link>
+          </li>
           <li>
             <Link href="#">Features</Link>
           </li>
@@ -61,13 +64,19 @@ const Header = () => {
           </li>
         </ul>
         <div className="hidden items-center gap-4 md:flex">
-          <Link href="#">Login</Link>
-          <Button>Sign Up</Button>
+          <Link href="/auths/logIn">Login</Link>
+          <Link href="/auths/SingUp"> <Button>Sign Up</Button></Link>
+
         </div>
       </header>
       {isMenuOpen && (
         <div className="border-t border-separator md:hidden">
           <ul className="flex flex-col gap-2 p-4">
+              <li>
+              <Link href="/" className="block py-2">
+               Home
+              </Link>
+            </li>
             <li>
               <Link href="#" className="block py-2">
                 Features
@@ -84,10 +93,11 @@ const Header = () => {
               </Link>
             </li>
             <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
-              <Link href="#" className="block py-2">
+              <Link href="/auths/logIn" className="block py-2">
                 Login
               </Link>
-              <Button className="w-full">Sign Up</Button>
+              <Link href="/auths/SingUp">  <Button className="w-full">Sign Up</Button> </Link>
+
             </li>
           </ul>
         </div>
