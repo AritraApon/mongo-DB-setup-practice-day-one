@@ -3,14 +3,15 @@ import { signOut, useSession } from "@/lib/auth-client";
 import { Link, Button } from "@heroui/react";
 // import { authClient } from "@/lib/auth-client";
 import { useState } from "react";
+import { PropagateLoader } from "react-spinners";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const {data ,isPending }= useSession()
-  if(isPending){
-    return <div>loading ....</div>
-  }
+  // if(isPending){
+  //   return <div   className="flex justify-center "><PropagateLoader /></div>
+  // }
   // console.log(data)
 
   const user = data?.user
@@ -64,7 +65,7 @@ const Header = () => {
             <Link href="#">Features</Link>
           </li>
           <li>
-            <Link href="#" className="font-medium text-accent" aria-current="page">
+            <Link href="/dashboard" className="font-medium text-accent" aria-current="page">
               Dashboard
             </Link>
           </li>
@@ -98,7 +99,7 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link href="#" className="block py-2 font-medium text-accent">
+              <Link href="/dashboard" className="block py-2 font-medium text-accent">
                 Dashboard
               </Link>
             </li>
@@ -109,7 +110,8 @@ const Header = () => {
             </li>
             <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
              {
-            user ? <><button  onClick={()=>signOut()}>LogOut</button></> : <>
+            user ? <><Link  href="/auths/logIn">   <button  onClick={()=>signOut()}>LogOut</button> </Link>
+          </> : <>
              <Link href="/auths/logIn">Login</Link>
             </>
           }
