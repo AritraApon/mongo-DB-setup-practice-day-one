@@ -3,6 +3,7 @@ import { authClient } from "@/lib/auth-client";
 import { Check, Eye, EyeSlash } from "@gravity-ui/icons";
 import { Button, Description, FieldError, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const LogInPage = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -33,19 +34,23 @@ const LogInPage = () => {
              */
             rememberMe: false
         },
-
-
     )
- console.log(data, error)
-        // if (error) {
-        //     toast.warn('all ready exists')
-        // } else {
-        //     toast.success('done')
-        // }
+ // 2. Logging check:
+    // 3. Proper Toast Logic:
+    if (error) {
+        // console.error("Login Error:", error);
+        toast.error(error.message || 'Login failed! Check your email/password');
+    } else {
+    //    console.error("Login data:", data);
+        toast.success('Login successful! Redirecting...');
+
+    }
 
 
 
     }
+
+
 
     return (
         <div>

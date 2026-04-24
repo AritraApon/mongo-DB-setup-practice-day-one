@@ -24,13 +24,13 @@ export default function RootLayout({ children }) {
       lang="en" suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col" suppressHydrationWarning={true}>
         <Header/>
         <main>
           {children}
         </main>
 
-<ToastContainer />
+<ToastContainer position="top-center" />
       </body>
     </html>
   );

@@ -1,16 +1,25 @@
 'use client'
+import { signOut, useSession } from "@/lib/auth-client";
 import { Link, Button } from "@heroui/react";
+// import { authClient } from "@/lib/auth-client";
 import { useState } from "react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const links = <>
-  <li>hero</li>
-  </>
+
+  const {data ,isPending }= useSession()
+  if(isPending){
+    return <div>loading ....</div>
+  }
+  // console.log(data)
+
+  const user = data?.user
+
+
   return (
     <div>
          <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
-      <header className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
+      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
         <div className="flex items-center gap-4">
           <button
             className="md:hidden"
@@ -64,11 +73,17 @@ const Header = () => {
           </li>
         </ul>
         <div className="hidden items-center gap-4 md:flex">
-          <Link href="/auths/logIn">Login</Link>
+
+          {
+            user ? <><button className="hover:border-b-2 hover:text-red-500" onClick={()=>signOut()}>LogOut</button></> : <>
+             <Link href="/auths/logIn">Login</Link>
+            </>
+          }
+
           <Link href="/auths/SingUp"> <Button>Sign Up</Button></Link>
 
         </div>
-      </header>
+      </div>
       {isMenuOpen && (
         <div className="border-t border-separator md:hidden">
           <ul className="flex flex-col gap-2 p-4">
@@ -93,9 +108,11 @@ const Header = () => {
               </Link>
             </li>
             <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
-              <Link href="/auths/logIn" className="block py-2">
-                Login
-              </Link>
+             {
+            user ? <><button  onClick={()=>signOut()}>LogOut</button></> : <>
+             <Link href="/auths/logIn">Login</Link>
+            </>
+          }
               <Link href="/auths/SingUp">  <Button className="w-full">Sign Up</Button> </Link>
 
             </li>

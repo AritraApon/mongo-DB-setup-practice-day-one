@@ -19,7 +19,7 @@ const [isVisible, setIsVisible] = useState(false);
         const userData = Object.fromEntries(formData.entries())
         const { data, error } = await authClient.signUp.email({
             email: userData.email,
-            password: userData.email, // user password -> min 8 characters by default
+            password: userData.password, // user password -> min 8 characters by default
             name: userData.name,
             callbackURL: "/",
 
